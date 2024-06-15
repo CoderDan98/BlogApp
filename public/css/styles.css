@@ -1,6 +1,4 @@
-/* Add these styles to your existing CSS file */
-
-html {
+/*html {
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -54,7 +52,7 @@ h1 {
   background-color: #d8ae7e;
   padding: 1rem;
   border-radius: 5px;
-  flex: 1 1 calc(33.333% - 1rem); /* Adjust the width to fit three items per row with gap */
+  flex: 1 1 calc(33.333% - 1rem);
   box-sizing: border-box;
   color: #ffe0b5;
 }
@@ -62,7 +60,7 @@ h1 {
 .post-actions {
   display: flex;
   justify-content: space-between;
-  gap: 1rem; /* Add space between buttons */
+  gap: 1rem;
 }
 
 .post-actions a,
@@ -73,8 +71,9 @@ h1 {
   padding: 0.5rem;
   border-radius: 3px;
   text-decoration: none;
-  flex: 1; /* Ensure equal size */
+  flex-grow: 1;
   text-align: center;
+  flex-basis: 0;
 }
 
 .new-post {
@@ -109,7 +108,7 @@ footer {
   border-radius: 5px;
   box-sizing: border-box;
   color: #ffe0b5;
-  flex-grow: 1; /* Ensure the form grows to fill the available space */
+  flex-grow: 1;
 }
 
 .edit-form input[type="text"],
@@ -126,15 +125,15 @@ footer {
 .edit-form textarea,
 .new-post-form textarea {
   width: 100%;
-  height: 100%; /* Ensure it takes up all available vertical space */
+  height: 100%;
   padding: 1rem;
   border: 1px solid #ffe0b5;
   border-radius: 3px;
   box-sizing: border-box;
   color: #d8ae7e;
   background-color: #ffe0b5;
-  resize: none; /* Disable resizing */
-  flex-grow: 1; /* Allow the textarea to grow */
+  resize: none;
+  flex-grow: 1;
 }
 
 .edit-form button,
@@ -146,11 +145,10 @@ footer {
   border-radius: 3px;
   cursor: pointer;
   font-size: 1rem;
-  align-self: center; /* Center the button */
-  margin-top: 1rem; /* Add space above the button */
+  align-self: center;
+  margin-top: 1rem;
 }
 
-/* Mobile Styles */
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
@@ -164,15 +162,15 @@ footer {
   .post-item {
     flex: 1 1 100%;
     margin-bottom: 1rem;
-    width: 100%; /* Ensure the post items take full width */
-    max-width: none; /* Remove max-width restriction */
+    width: 100%;
+    max-width: none; 
   }
 
   .post-actions {
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Ensure the post actions take full width */
-    gap: 0.5rem; /* Add space between buttons */
+    width: 100%; 
+    gap: 0.5rem;
   }
 
   .post-actions a,
@@ -180,7 +178,7 @@ footer {
     margin-top: 0.5rem;
     width: 100%;
     text-align: center;
-    padding: 0.5rem; /* Ensure padding consistency */
+    padding: 0.5rem;
   }
 
   .post-actions form {
@@ -193,7 +191,7 @@ footer {
   }
 
   .main-content {
-    width: 100%; /* Ensure the main content takes full width */
+    width: 100%;
     box-sizing: border-box;
   }
 
@@ -205,4 +203,4 @@ footer {
   .new-post-form {
     padding: 1rem;
   }
-}
+}*/

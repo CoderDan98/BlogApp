@@ -16,8 +16,12 @@
         <% posts.forEach(post => { %>
         <li class="post-item">
           <h2><%= post.title %></h2>
-          <p><%= post.body %></p>
+          <p>
+            <%= post.body.substring(0, 1000) %><% if (post.body.length >= 1000)
+            { %>...<% } %>
+          </p>
           <div class="post-actions">
+            <a href="/post/<%= post.id %>">Read More</a>
             <a href="/edit/<%= post.id %>">Edit</a>
             <form action="/delete/<%= post.id %>" method="POST">
               <button type="submit">Delete</button>

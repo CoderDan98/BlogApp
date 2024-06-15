@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 // In-memory storage for posts
 let posts = [];
 
-//Gets current year - used for copyrighting
+// Gets current year - used for copyrighting
 const currentYear = new Date().getFullYear();
 
 // Route to display all posts
@@ -54,6 +54,16 @@ app.post("/edit/:id", (req, res) => {
 app.post("/delete/:id", (req, res) => {
   posts = posts.filter((p) => p.id != req.params.id);
   res.redirect("/");
+});
+
+// Route to display a single post
+app.get("/post/:id", (req, res) => {
+  const post = posts.find((p) => p.id == req.params.id);
+  if (post) {
+    res.render("view", { post, currentYear });
+  } else {
+    res.status(404).send("Post not found");
+  }
 });
 
 // Start the server
