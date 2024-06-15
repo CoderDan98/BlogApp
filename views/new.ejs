@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <h1>Create New Post</h1>
-    <form action="/new" method="POST">
-      <input type="text" name="title" placeholder="Title" required />
-      <textarea name="body" placeholder="Post content" required></textarea>
-      <button type="submit">Create Post</button>
-    </form>
+    <header>
+      <h1>Create New Post</h1>
+    </header>
+
+    <main class="main-content">
+      <form action="/new" method="POST" class="new-post-form">
+        <input type="text" name="title" placeholder="Title" required />
+        <textarea name="body" placeholder="Post content" required></textarea>
+        <button type="submit">Create Post</button>
+      </form>
+    </main>
+
+    <hr />
+    <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>
