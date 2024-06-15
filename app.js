@@ -12,14 +12,17 @@ app.set("view engine", "ejs");
 // In-memory storage for posts
 let posts = [];
 
+//Gets current year - used for copyrighting
+const currentYear = new Date().getFullYear();
+
 // Route to display all posts
 app.get("/", (req, res) => {
-  res.render("index", { posts });
+  res.render("index", { posts, currentYear });
 });
 
 // Route to display the form for creating a new post
 app.get("/new", (req, res) => {
-  res.render("new");
+  res.render("new", { currentYear });
 });
 
 // Route to handle form submission for creating a new post
@@ -36,7 +39,7 @@ app.post("/new", (req, res) => {
 // Route to display the form for editing an existing post
 app.get("/edit/:id", (req, res) => {
   const post = posts.find((p) => p.id == req.params.id);
-  res.render("edit", { post });
+  res.render("edit", { post, currentYear });
 });
 
 // Route to handle form submission for updating an existing post

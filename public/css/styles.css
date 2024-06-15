@@ -1,0 +1,155 @@
+/* #FFF2D7 */
+/* #FFE0B5 */
+/* #F8C794 */
+/* #D8AE7E */
+
+html {
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  background-color: #fff2d7;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #d8ae7e;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  color: #ffe0b5;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 1200px;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.post-item {
+  background-color: #d8ae7e;
+  padding: 1rem;
+  border-radius: 5px;
+  flex: 1 1 calc(33.333% - 1rem); /* Adjust the width to fit three items per row with gap */
+  box-sizing: border-box;
+  color: #ffe0b5;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem; /* Add space between buttons */
+}
+
+.post-actions a,
+.post-actions form button {
+  background-color: #ffe0b5;
+  color: #d8ae7e;
+  border: 1px solid #d8ae7e;
+  padding: 0.5rem;
+  border-radius: 3px;
+  text-decoration: none;
+  flex: 1; /* Ensure equal size */
+  text-align: center;
+}
+
+.new-post {
+  background-color: #d8ae7e;
+  color: #ffe0b5;
+  border: 1px solid #ffe0b5;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: #d8ae7e;
+  width: 100%;
+  box-sizing: border-box;
+  color: #ffe0b5;
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .post-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .post-item {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+    width: 100%; /* Ensure the post items take full width */
+    max-width: none; /* Remove max-width restriction */
+  }
+
+  .post-actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure the post actions take full width */
+    gap: 0.5rem; /* Add space between buttons */
+  }
+
+  .post-actions a,
+  .post-actions form button {
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem; /* Ensure padding consistency */
+  }
+
+  .post-actions form {
+    width: 100%;
+    display: flex;
+  }
+
+  .post-actions form button {
+    flex: 1;
+  }
+
+  .main-content {
+    padding-bottom: 8rem; /* Ensure there is space for the button on mobile */
+    width: 100%; /* Ensure the main content takes full width */
+    box-sizing: border-box;
+  }
+
+  .new-post {
+    width: 80%;
+  }
+}
