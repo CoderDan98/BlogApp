@@ -15,27 +15,40 @@
       <ul class="post-list">
         <% posts.forEach(post => { %>
         <li class="post-item">
-          <h2><%= post.title %></h2>
-          <p>
-            <%= post.body.substring(0, 1000) %><% if (post.body.length >= 1000)
-            { %>...<% } %>
-          </p>
+          <div class="post-content">
+            <h2><%= post.title %></h2>
+            <p>
+              <%= post.body.substring(0, 1000) %><% if (post.body.length >=
+              1000) { %>...<% } %>
+            </p>
+          </div>
           <div class="post-actions">
-            <a href="/post/<%= post.id %>">Read More</a>
-            <a href="/edit/<%= post.id %>">Edit</a>
+            <% if (post.body.length >= 1000) { %>
+            <button
+              class="post-btn"
+              onclick="window.location.href='/post/<%= post.id %>'"
+            >
+              Read More
+            </button>
+            <% } %>
+            <button
+              class="post-btn"
+              onclick="window.location.href='/edit/<%= post.id %>'"
+            >
+              Edit
+            </button>
             <form action="/delete/<%= post.id %>" method="POST">
-              <button type="submit">Delete</button>
+              <button class="post-btn" type="submit">Delete</button>
             </form>
           </div>
         </li>
         <% }) %>
       </ul>
-      <button class="new-post" onclick="window.location.href='/new'">
+      <button class="new-post-btn" onclick="window.location.href='/new'">
         Add New Post
       </button>
     </main>
 
-    <hr />
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>

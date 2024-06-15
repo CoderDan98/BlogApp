@@ -1,4 +1,4 @@
-/*html {
+html {
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -15,16 +15,9 @@ body {
 
 header {
   background-color: #d8ae7e;
-  padding: 1rem;
   text-align: center;
-  width: 100%;
   color: #ffe0b5;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 3rem;
-  margin: 0;
+  font-size: 1.5rem;
 }
 
 .main-content {
@@ -35,6 +28,16 @@ h1 {
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
+}
+
+.new-post-btn {
+  background-color: #d8ae7e;
+  color: #ffe0b5;
+  border: 1px solid #ffe0b5;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  border-radius: 5px;
 }
 
 .post-list {
@@ -55,32 +58,27 @@ h1 {
   flex: 1 1 calc(33.333% - 1rem);
   box-sizing: border-box;
   color: #ffe0b5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-content {
+  flex-grow: 1;
 }
 
 .post-actions {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  margin-top: auto;
 }
 
-.post-actions a,
-.post-actions form button {
+.post-btn {
   background-color: #ffe0b5;
   color: #d8ae7e;
   border: 1px solid #d8ae7e;
-  padding: 0.5rem;
-  border-radius: 3px;
-  text-decoration: none;
-  flex-grow: 1;
-  text-align: center;
-  flex-basis: 0;
-}
-
-.new-post {
-  background-color: #d8ae7e;
-  color: #ffe0b5;
-  border: 1px solid #ffe0b5;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
   margin-top: 2rem;
   border-radius: 5px;
@@ -96,6 +94,7 @@ footer {
   color: #ffe0b5;
 }
 
+/*
 .edit-form,
 .new-post-form {
   display: flex;
