@@ -12,8 +12,19 @@
     </header>
 
     <main class="main-content">
-      <form action="/new" method="POST" class="new-post-form">
+      <form
+        action="/new"
+        method="POST"
+        class="new-post-form"
+        enctype="multipart/form-data"
+      >
         <input type="text" name="title" placeholder="Title" required />
+        <input
+          type="file"
+          class="image-upload-button"
+          name="image"
+          accept="image/*"
+        />
         <textarea name="body" placeholder="Post content" required></textarea>
         <button type="submit">Create Post</button>
       </form>
