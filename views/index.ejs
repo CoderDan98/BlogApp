@@ -9,10 +9,11 @@
   <body>
     <header>
       <h1>My Blog</h1>
+      <input type="text" id="searchInput" placeholder="Search posts..." />
     </header>
 
     <main class="main-content">
-      <ul class="post-list">
+      <ul class="post-list" id="postList">
         <% posts.forEach(post => { %>
         <li class="post-item">
           <div class="post-content">
@@ -50,5 +51,6 @@
     </main>
 
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
+    <script src="/js/index.js"></script>
   </body>
 </html>
