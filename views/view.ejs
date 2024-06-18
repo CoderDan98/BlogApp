@@ -11,11 +11,11 @@
       <h1><%= post.title %></h1>
     </header>
 
-    <main class="main-content">
-      <p><%= post.body %></p>
+    <main class="main-content view-post">
+      <textarea name="body" disabled><%= post.body %></textarea>
+      <button type="submit" onclick="window.location.href='/'">Back</button>
     </main>
 
-    <hr />
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>
