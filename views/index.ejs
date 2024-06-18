@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the web page -->
     <title>Blog App</title>
+
+    <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <!-- Header section with the main title -->
     <header>
       <h1>My Blog</h1>
     </header>
 
+    <!-- Main content section of the blog -->
     <main class="main-content">
+      <!-- Search container with a search input box -->
       <div class="search-container">
         <input
           type="text"
@@ -20,20 +28,31 @@
           placeholder="Search posts..."
         />
       </div>
+
+      <!-- Unordered list to display blog posts -->
       <ul class="post-list" id="postList">
+        <!-- Loop through each post and display its content -->
         <% posts.forEach(post => { %>
         <li class="post-item">
           <div class="post-content">
+            <!-- Post title -->
             <h2><%= post.title %></h2>
+
+            <!-- Conditional rendering for post image -->
             <% if (post.imagePath) { %>
             <img src="<%= post.imagePath %>" alt="Post Image" />
             <% } %>
+
+            <!-- Post body snippet with a limit of 1000 characters -->
             <p>
-              <%= post.body.substring(0, 1000) %><% if (post.body.length >=
+              <%= post.body.substring(0, 1000) %> <% if (post.body.length >=
               1000) { %>...<% } %>
             </p>
           </div>
+
+          <!-- Actions for each post -->
           <div class="post-actions">
+            <!-- 'Read More' button for posts with body longer than 1000 characters -->
             <% if (post.body.length >= 1000) { %>
             <button
               class="post-btn"
@@ -42,12 +61,16 @@
               Read More
             </button>
             <% } %>
+
+            <!-- 'Edit' button for each post -->
             <button
               class="post-btn"
               onclick="window.location.href='/edit/<%= post.id %>'"
             >
               Edit
             </button>
+
+            <!-- Form with 'Delete' button to delete the post -->
             <form action="/delete/<%= post.id %>" method="POST">
               <button class="post-btn" type="submit">Delete</button>
             </form>
@@ -56,29 +79,41 @@
         <% }) %>
       </ul>
 
+      <!-- Pagination section -->
       <div class="pagination">
+        <!-- Link to previous page if not on the first page -->
         <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pagination-btn"
           >Previous</a
         >
-        <% } %> <% for (let i = 1; i <= totalPages; i++) { %>
+        <% } %>
+
+        <!-- Loop through each page number and display as a link -->
+        <% for (let i = 1; i <= totalPages; i++) { %>
         <a
           href="?page=<%= i %>"
           class="pagination-btn <%= currentPage === i ? 'active' : '' %>"
         >
           <%= i %>
         </a>
-        <% } %> <% if (currentPage < totalPages) { %>
+        <% } %>
+
+        <!-- Link to next page if not on the last page -->
+        <% if (currentPage < totalPages) { %>
         <a href="?page=<%= currentPage + 1 %>" class="pagination-btn">Next</a>
         <% } %>
       </div>
 
+      <!-- Button to add a new post -->
       <button class="new-post-btn" onclick="window.location.href='/new'">
         Add New Post
       </button>
     </main>
 
+    <!-- Footer section with current year and author name -->
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
+
+    <!-- Link to external JavaScript file -->
     <script src="/js/index.js"></script>
   </body>
 </html>
