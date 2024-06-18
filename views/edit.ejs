@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Character encoding for the document -->
     <meta charset="UTF-8" />
+    <!-- Viewport settings for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the page -->
     <title>Edit Post</title>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <!-- Header section containing the page title -->
     <header>
       <h1>Edit Post</h1>
     </header>
 
+    <!-- Main content section -->
     <main class="main-content">
+      <!-- Form to edit the post -->
       <form
         action="/edit/<%= post.id %>"
         method="POST"
         enctype="multipart/form-data"
         class="edit-form"
       >
+        <!-- Input field for the post title, pre-filled with the current title -->
         <input type="text" name="title" value="<%= post.title %>" required />
+
+        <!-- Conditionally render the image if the post has an imagePath -->
         <% if (post.imagePath) { %>
+        <!-- Display the post image -->
         <img src="<%= post.imagePath %>" alt="Post Image" />
         <% } %>
+
+        <!-- Input field for uploading a new image -->
         <input type="file" name="image" accept="image/*" />
+        <!-- Textarea for the post body, pre-filled with the current body -->
         <textarea name="body" required><%= post.body %></textarea>
+        <!-- Button to submit the form and update the post -->
         <button type="submit">Update Post</button>
+        <!-- Button to navigate back to the homepage -->
         <button type="button" onclick="window.location.href='/'">Back</button>
       </form>
     </main>
 
+    <!-- Footer section displaying the current year and author's name -->
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>
