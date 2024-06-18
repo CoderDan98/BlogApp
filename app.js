@@ -1,5 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+// Get the current directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3000;
@@ -14,6 +22,22 @@ let posts = [];
 
 // Gets current year - used for copyrighting
 const currentYear = new Date().getFullYear();
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
+
+// Ensure the uploads directory exists
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
 
 // Route to display all posts with pagination
 app.get("/", (req, res) => {
@@ -40,11 +64,12 @@ app.get("/new", (req, res) => {
 });
 
 // Route to handle form submission for creating a new post
-app.post("/new", (req, res) => {
+app.post("/new", upload.single("image"), (req, res) => {
   const newPost = {
     id: posts.length + 1,
     title: req.body.title,
     body: req.body.body,
+    imagePath: req.file ? `/uploads/${req.file.filename}` : null,
   };
   posts.push(newPost);
   res.redirect("/");
@@ -57,16 +82,43 @@ app.get("/edit/:id", (req, res) => {
 });
 
 // Route to handle form submission for updating an existing post
-app.post("/edit/:id", (req, res) => {
+app.post("/edit/:id", upload.single("image"), (req, res) => {
   const post = posts.find((p) => p.id == req.params.id);
   post.title = req.body.title;
   post.body = req.body.body;
+
+  if (req.file) {
+    // Delete the old image file if it exists
+    if (post.imagePath) {
+      const oldImagePath = path.join(__dirname, post.imagePath);
+      fs.unlink(oldImagePath, (err) => {
+        if (err) {
+          console.error("Failed to delete old image:", err);
+        }
+      });
+    }
+    post.imagePath = `/uploads/${req.file.filename}`;
+  }
+
   res.redirect("/");
 });
 
 // Route to handle post deletion
 app.post("/delete/:id", (req, res) => {
-  posts = posts.filter((p) => p.id != req.params.id);
+  const postIndex = posts.findIndex((p) => p.id == req.params.id);
+  if (postIndex !== -1) {
+    const post = posts[postIndex];
+    // Delete the image file if it exists
+    if (post.imagePath) {
+      const imagePath = path.join(__dirname, post.imagePath);
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error("Failed to delete image:", err);
+        }
+      });
+    }
+    posts.splice(postIndex, 1);
+  }
   res.redirect("/");
 });
 
@@ -79,6 +131,9 @@ app.get("/post/:id", (req, res) => {
     res.status(404).send("Post not found");
   }
 });
+
+// Serve static files from uploads directory
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start the server
 app.listen(PORT, () => {

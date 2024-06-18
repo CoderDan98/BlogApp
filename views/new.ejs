@@ -12,11 +12,17 @@
     </header>
 
     <main class="main-content">
-      <form action="/new" method="POST" class="new-post-form">
+      <form
+        action="/new"
+        method="POST"
+        enctype="multipart/form-data"
+        class="new-post-form"
+      >
         <input type="text" name="title" placeholder="Title" required />
         <textarea name="body" placeholder="Post content" required></textarea>
+        <input type="file" name="image" accept="image/*" required />
         <button type="submit">Create Post</button>
-        <button type="submit" onclick="window.location.href='/'">Back</button>
+        <button type="button" onclick="window.location.href='/'">Back</button>
       </form>
     </main>
 

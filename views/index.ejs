@@ -25,6 +25,9 @@
         <li class="post-item">
           <div class="post-content">
             <h2><%= post.title %></h2>
+            <% if (post.imagePath) { %>
+            <img src="<%= post.imagePath %>" alt="Post Image" />
+            <% } %>
             <p>
               <%= post.body.substring(0, 1000) %><% if (post.body.length >=
               1000) { %>...<% } %>

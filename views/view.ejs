@@ -12,8 +12,11 @@
     </header>
 
     <main class="main-content view-post">
+      <% if (post.imagePath) { %>
+      <img src="<%= post.imagePath %>" alt="Post Image" class="post-image" />
+      <% } %>
       <textarea name="body" disabled><%= post.body %></textarea>
-      <button type="submit" onclick="window.location.href='/'">Back</button>
+      <button type="button" onclick="window.location.href='/'">Back</button>
     </main>
 
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
