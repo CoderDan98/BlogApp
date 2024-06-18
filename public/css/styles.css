@@ -132,7 +132,8 @@ header {
 }
 
 .edit-form textarea,
-.new-post-form textarea {
+.new-post-form textarea,
+.view-post textarea {
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -180,6 +181,7 @@ img {
   max-height: 300px;
   object-fit: cover;
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 input::file-selector-button {
