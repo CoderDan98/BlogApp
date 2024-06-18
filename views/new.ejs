@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the web page -->
     <title>Create New Post</title>
+
+    <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <!-- Header section with the main title -->
     <header>
       <h1>Create New Post</h1>
     </header>
 
+    <!-- Main content section for the new post form -->
     <main class="main-content">
+      <!-- Form to create a new post -->
       <form
         action="/new"
         method="POST"
         enctype="multipart/form-data"
         class="new-post-form"
       >
+        <!-- Input field for the post title -->
         <input
           type="text"
           class="post-title"
@@ -25,19 +34,30 @@
           placeholder="Title"
           required
         />
+
+        <!-- File input for uploading an image -->
         <input type="file" name="image" accept="image/*" />
+
+        <!-- Textarea for the post content -->
         <textarea
           name="body"
           class="post-body"
           placeholder="Post content"
           required
         ></textarea>
+
+        <!-- Submit button to create the post -->
         <button type="submit">Create Post</button>
+
+        <!-- Button to go back to the home page -->
         <button type="button" onclick="window.location.href='/'">Back</button>
       </form>
     </main>
 
+    <!-- Horizontal rule for separation -->
     <hr />
+
+    <!-- Footer section with current year and author name -->
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>

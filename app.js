@@ -13,9 +13,9 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(express.static("public")); // Serve static files from 'public' directory
+app.set("view engine", "ejs"); // Set EJS as the view engine
 
 // In-memory storage for posts
 let posts = [];
@@ -26,17 +26,17 @@ const currentYear = new Date().getFullYear();
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, "uploads/"); // Set the destination for uploaded files
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + path.extname(file.originalname)); // Set the filename with current timestamp
   },
 });
 const upload = multer({ storage: storage });
 
 // Ensure the uploads directory exists
 if (!fs.existsSync("uploads")) {
-  fs.mkdirSync("uploads");
+  fs.mkdirSync("uploads"); // Create 'uploads' directory if it doesn't exist
 }
 
 // Route to display all posts with pagination
@@ -46,9 +46,9 @@ app.get("/", (req, res) => {
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
 
-  const reversedPosts = [...posts].reverse();
-  const paginatedPosts = reversedPosts.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(posts.length / limit);
+  const reversedPosts = [...posts].reverse(); // Reverse the posts array to show newest first
+  const paginatedPosts = reversedPosts.slice(startIndex, endIndex); // Get the posts for the current page
+  const totalPages = Math.ceil(posts.length / limit); // Calculate total number of pages
 
   res.render("index", {
     posts: paginatedPosts,
@@ -69,21 +69,21 @@ app.post("/new", upload.single("image"), (req, res) => {
     id: posts.length + 1,
     title: req.body.title,
     body: req.body.body,
-    imagePath: req.file ? `/uploads/${req.file.filename}` : null,
+    imagePath: req.file ? `/uploads/${req.file.filename}` : null, // Save image path if file was uploaded
   };
-  posts.push(newPost);
-  res.redirect("/");
+  posts.push(newPost); // Add the new post to the posts array
+  res.redirect("/"); // Redirect to home page
 });
 
 // Route to display the form for editing an existing post
 app.get("/edit/:id", (req, res) => {
-  const post = posts.find((p) => p.id == req.params.id);
+  const post = posts.find((p) => p.id == req.params.id); // Find the post by ID
   res.render("edit", { post, currentYear });
 });
 
 // Route to handle form submission for updating an existing post
 app.post("/edit/:id", upload.single("image"), (req, res) => {
-  const post = posts.find((p) => p.id == req.params.id);
+  const post = posts.find((p) => p.id == req.params.id); // Find the post by ID
   post.title = req.body.title;
   post.body = req.body.body;
 
@@ -97,15 +97,15 @@ app.post("/edit/:id", upload.single("image"), (req, res) => {
         }
       });
     }
-    post.imagePath = `/uploads/${req.file.filename}`;
+    post.imagePath = `/uploads/${req.file.filename}`; // Update the image path with the new file
   }
 
-  res.redirect("/");
+  res.redirect("/"); // Redirect to home page
 });
 
 // Route to handle post deletion
 app.post("/delete/:id", (req, res) => {
-  const postIndex = posts.findIndex((p) => p.id == req.params.id);
+  const postIndex = posts.findIndex((p) => p.id == req.params.id); // Find the index of the post by ID
   if (postIndex !== -1) {
     const post = posts[postIndex];
     // Delete the image file if it exists
@@ -117,18 +117,18 @@ app.post("/delete/:id", (req, res) => {
         }
       });
     }
-    posts.splice(postIndex, 1);
+    posts.splice(postIndex, 1); // Remove the post from the posts array
   }
-  res.redirect("/");
+  res.redirect("/"); // Redirect to home page
 });
 
 // Route to display a single post
 app.get("/post/:id", (req, res) => {
-  const post = posts.find((p) => p.id == req.params.id);
+  const post = posts.find((p) => p.id == req.params.id); // Find the post by ID
   if (post) {
-    res.render("view", { post, currentYear });
+    res.render("view", { post, currentYear }); // Render the view template with the post data
   } else {
-    res.status(404).send("Post not found");
+    res.status(404).send("Post not found"); // Send a 404 response if post is not found
   }
 });
 
@@ -137,5 +137,5 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`); // Log message when the server starts
 });

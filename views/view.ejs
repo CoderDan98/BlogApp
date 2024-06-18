@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the web page -->
     <title>View Post</title>
+
+    <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <!-- Header section with the post title -->
     <header>
       <h1><%= post.title %></h1>
     </header>
 
+    <!-- Main content section for viewing the post -->
     <main class="main-content">
+      <!-- Conditional rendering for post image -->
       <% if (post.imagePath) { %>
       <img src="<%= post.imagePath %>" alt="Post Image" class="post-image" />
       <% } %>
+
+      <!-- Post body content -->
       <div class="view-post">
         <p name="body"><%= post.body %></p>
+
+        <!-- Button to go back to the home page -->
         <button type="button" onclick="window.location.href='/'">Back</button>
       </div>
     </main>
 
+    <!-- Footer section with current year and author name -->
     <footer>&copy; <%= currentYear %> - Daniel Sarney</footer>
   </body>
 </html>
