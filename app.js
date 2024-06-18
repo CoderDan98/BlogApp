@@ -15,9 +15,23 @@ let posts = [];
 // Gets current year - used for copyrighting
 const currentYear = new Date().getFullYear();
 
-// Route to display all posts
+// Route to display all posts with pagination
 app.get("/", (req, res) => {
-  res.render("index", { posts, currentYear });
+  const page = parseInt(req.query.page) || 1;
+  const limit = 5; // Number of posts per page
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const reversedPosts = [...posts].reverse();
+  const paginatedPosts = reversedPosts.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(posts.length / limit);
+
+  res.render("index", {
+    posts: paginatedPosts,
+    currentPage: page,
+    totalPages: totalPages,
+    currentYear: currentYear,
+  });
 });
 
 // Route to display the form for creating a new post

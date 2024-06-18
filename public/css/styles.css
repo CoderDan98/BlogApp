@@ -158,6 +158,30 @@ header {
   margin-top: 1rem;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination-btn {
+  padding: 10px 20px;
+  margin: 0 5px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.pagination-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination-btn.active {
+  font-weight: bold;
+  background-color: #ddd;
+}
+
 footer {
   text-align: center;
   font-size: 1rem;
