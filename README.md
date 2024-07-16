@@ -17,7 +17,7 @@ Blog Application is a web-based platform that allows users to manage blog posts 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/CoderDan98/blog-app.git
+   git clone https://github.com/CoderDan98/BlogApp.git
    cd blog-app
    ```
 
